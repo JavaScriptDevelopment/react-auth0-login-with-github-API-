@@ -7,6 +7,30 @@ import Header from './Components/Header';
 
 
 class App extends Component {
+  
+  constructor(props){
+    super(props);
+
+    this.state = {
+      idToken: '',
+      profile: {}
+    };
+  }
+
+
+  static defaultProps = {
+    clientID: Sz7rXtT2JeGMs18hSgGUOqeXXOIH4HPI,
+    domain: 'rupesh1310.auth0.com'
+  }
+componentWillMount(){
+  this.lock = new Auth0Lock(this.props.clientID, this.props.domain)
+  this.lock.on('authenticated', (authResult) => {
+    console.log(authResult);
+  });
+}
+  
+  
+  
   render() {
     return (
       <div className="App">
